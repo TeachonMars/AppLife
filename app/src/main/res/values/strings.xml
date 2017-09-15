@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AppLife</string>
+    <string name="activityIsReady">$s activity is ready</string>
+    <string name="activityIsNotReady">No activity found, retry later</string>
+</resources>
