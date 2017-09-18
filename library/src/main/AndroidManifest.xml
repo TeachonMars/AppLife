@@ -1,4 +1,1 @@
-<manifest package="com.teachonmars.module.appLife">
-
-    <application />
-</manifest>
+<manifest package="com.teachonmars.module.appLife" />
