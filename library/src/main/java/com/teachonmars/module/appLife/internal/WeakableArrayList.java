@@ -2,16 +2,16 @@ package com.teachonmars.module.appLife.internal;
 
 import android.app.Activity;
 
-import com.teachonmars.module.appLife.ActivityBaseSpy;
+import com.teachonmars.module.appLife.listeners.ActivityBaseSpy;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-public class WeakableArrayList<T extends ActivityBaseSpy> {
+class WeakableArrayList<T extends ActivityBaseSpy> {
     private ArrayList<WeakReference<T>> weakData = new ArrayList<>();
     private ArrayList<T>                data     = new ArrayList<>();
 
-    public void add(T listener, boolean hardRef) {
+    void add(T listener, boolean hardRef) {
         if (listener != null) {
             if (hardRef) {
                 data.add(listener.hashCode(), listener);
@@ -21,7 +21,7 @@ public class WeakableArrayList<T extends ActivityBaseSpy> {
         }
     }
 
-    public void remove(ActivityBaseSpy listener) {
+    void remove(ActivityBaseSpy listener) {
         if (listener != null) {
             if (data.get(listener.hashCode()) == listener) {
                 data.remove(listener.hashCode());
@@ -31,7 +31,7 @@ public class WeakableArrayList<T extends ActivityBaseSpy> {
         }
     }
 
-    public void iterCreation(Activity activity) {
+    void iterCreation(Activity activity) {
         for (WeakReference<T> listenerRef : weakData) {
             T listener = listenerRef.get();
             if (listener != null) {
@@ -44,7 +44,7 @@ public class WeakableArrayList<T extends ActivityBaseSpy> {
 
     }
 
-    public void iterDestruction(Activity activity) {
+    void iterDestruction(Activity activity) {
         for (WeakReference<T> listenerRef : weakData) {
             T listener = listenerRef.get();
             if (listener != null) {
@@ -56,7 +56,7 @@ public class WeakableArrayList<T extends ActivityBaseSpy> {
         }
     }
 
-    public void iterStart(Activity activity) {
+    void iterStart(Activity activity) {
         for (WeakReference<T> listenerRef : weakData) {
             T listener = listenerRef.get();
             if (listener != null) {
@@ -68,7 +68,7 @@ public class WeakableArrayList<T extends ActivityBaseSpy> {
         }
     }
 
-    public void iterStop(Activity activity) {
+    void iterStop(Activity activity) {
         for (WeakReference<T> listenerRef : weakData) {
             T listener = listenerRef.get();
             if (listener != null) {
@@ -80,7 +80,7 @@ public class WeakableArrayList<T extends ActivityBaseSpy> {
         }
     }
 
-    public void iterResume(Activity activity) {
+    void iterResume(Activity activity) {
         for (WeakReference<T> listenerRef : weakData) {
             T listener = listenerRef.get();
             if (listener != null) {
@@ -92,7 +92,7 @@ public class WeakableArrayList<T extends ActivityBaseSpy> {
         }
     }
 
-    public void iterPause(Activity activity) {
+    void iterPause(Activity activity) {
         for (WeakReference<T> listenerRef : weakData) {
             T listener = listenerRef.get();
             if (listener != null) {

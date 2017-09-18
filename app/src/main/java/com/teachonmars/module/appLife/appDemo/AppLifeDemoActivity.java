@@ -7,14 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 public class AppLifeDemoActivity extends AppCompatActivity {
     private static final String TAG = AppLifeDemoActivity.class.getSimpleName();
 
-    public AppLifeDemoActivity() {
-        StaticWithoutContext.bob();
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StaticWithoutContext.bob();
+        StaticWithoutContext.test();
     }
 
 }

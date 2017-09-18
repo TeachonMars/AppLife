@@ -5,10 +5,10 @@ import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.teachonmars.module.appLife.ActivityActiveSpy;
-import com.teachonmars.module.appLife.ActivityBaseSpy;
-import com.teachonmars.module.appLife.ActivityCreationSpy;
-import com.teachonmars.module.appLife.ActivityVisibleSpy;
+import com.teachonmars.module.appLife.listeners.ActivityActiveSpy;
+import com.teachonmars.module.appLife.listeners.ActivityBaseSpy;
+import com.teachonmars.module.appLife.listeners.ActivityCreationSpy;
+import com.teachonmars.module.appLife.listeners.ActivityVisibleSpy;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -19,11 +19,11 @@ import java.util.ListIterator;
 public class AppSpy implements Application.ActivityLifecycleCallbacks {
 
 
-    private static LinkedHashMap<Integer, WeakReference<Activity>> activityStack              = new LinkedHashMap<>();
-    private        WeakableArrayList<ActivityCreationSpy>          creationActivityListeners  = new WeakableArrayList<>();
-    private        WeakableArrayList<ActivityVisibleSpy>           visibleActivityListeners   = new WeakableArrayList<>();
-    private        WeakableArrayList<ActivityActiveSpy>            activeActivityListeners    = new WeakableArrayList<>();
-    private        WeakableArrayList<ActivityBaseSpy>              wholeActivityLifeListeners = new WeakableArrayList<>();
+    private LinkedHashMap<Integer, WeakReference<Activity>> activityStack              = new LinkedHashMap<>();
+    private WeakableArrayList<ActivityCreationSpy>          creationActivityListeners  = new WeakableArrayList<>();
+    private WeakableArrayList<ActivityVisibleSpy>           visibleActivityListeners   = new WeakableArrayList<>();
+    private WeakableArrayList<ActivityActiveSpy>            activeActivityListeners    = new WeakableArrayList<>();
+    private WeakableArrayList<ActivityBaseSpy>              wholeActivityLifeListeners = new WeakableArrayList<>();
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

@@ -7,10 +7,9 @@ import com.teachonmars.module.appLife.AppLife;
 
 public class StaticWithoutContext {
 
-
     private static final String TAG = StaticWithoutContext.class.getSimpleName();
 
-    public static void bob() {
+    public static void test() {
         Activity currentActivity = AppLife.getCurrentActivity();
         String msg;
         if (currentActivity != null) {
