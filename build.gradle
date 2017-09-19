@@ -1,0 +1,48 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
+}
+
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    bintrayRepo = 'modules'
+    bintrayName = 'AppLife'
+
+    pomGroupId = 'com.teachonmars.modules'
+    pomArtifactId = 'appLife'
+    pomName = 'AppLife'
+
+    pomDescription = 'A library to access current top activity and application context from anywhere. Also allow to track activities lifecycle'
+
+    siteUrl = 'https://github.com/TeachonMars/AppLife'
+    gitUrl = 'https://github.com/TeachonMars/AppLife.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'benjaminVadon'
+    developerName = 'Benjamin Vadon'
+    developerEmail = 'development@teachonmars.com'
+    pomOrganizationName = 'teachonmars'
+    pomOrganizationUrl = 'https://teachonmars.com'
+    licenseName = 'The MIT License'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
