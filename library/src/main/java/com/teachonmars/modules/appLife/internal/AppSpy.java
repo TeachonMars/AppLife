@@ -1,14 +1,14 @@
-package com.teachonmars.module.appLife.internal;
+package com.teachonmars.modules.appLife.internal;
 
 import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.teachonmars.module.appLife.listeners.ActivityActiveSpy;
-import com.teachonmars.module.appLife.listeners.ActivityBaseSpy;
-import com.teachonmars.module.appLife.listeners.ActivityCreationSpy;
-import com.teachonmars.module.appLife.listeners.ActivityVisibleSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityActiveSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityBaseSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityCreationSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityVisibleSpy;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

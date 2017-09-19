@@ -1,8 +1,8 @@
-package com.teachonmars.module.appLife.internal;
+package com.teachonmars.modules.appLife.internal;
 
 import android.app.Activity;
 
-import com.teachonmars.module.appLife.listeners.ActivityBaseSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityBaseSpy;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

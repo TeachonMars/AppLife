@@ -1,11 +1,12 @@
-package com.teachonmars.module.appLife.appDemo;
+package com.teachonmars.modules.appLife.appDemo;
 
 import android.app.Activity;
 import android.util.Log;
 
-import com.teachonmars.module.appLife.AppLife;
+import com.teachonmars.modules.appLife.AppLife;
 
 public class StaticWithoutContext {
+
 
     private static final String TAG = StaticWithoutContext.class.getSimpleName();
 

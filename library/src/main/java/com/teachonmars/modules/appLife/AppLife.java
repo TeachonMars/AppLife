@@ -1,4 +1,4 @@
-package com.teachonmars.module.appLife;
+package com.teachonmars.modules.appLife;
 
 import android.app.Activity;
 import android.app.Application;
@@ -6,12 +6,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.teachonmars.module.appLife.internal.AppSpy;
-import com.teachonmars.module.appLife.listeners.ActivityActiveSpy;
-import com.teachonmars.module.appLife.listeners.ActivityBaseSpy;
-import com.teachonmars.module.appLife.listeners.ActivityCreationSpy;
-import com.teachonmars.module.appLife.listeners.ActivityVisibleSpy;
-import com.teachonmars.module.autoContext.annotation.NeedContext;
+import com.teachonmars.modules.appLife.internal.AppSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityActiveSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityBaseSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityCreationSpy;
+import com.teachonmars.modules.appLife.listeners.ActivityVisibleSpy;
+import com.teachonmars.modules.autoContext.annotation.NeedContext;
 
 public class AppLife {
     private static AppSpy appSpy = new AppSpy();
@@ -22,13 +22,17 @@ public class AppLife {
      * Init library.
      * Don't call this method, it will be called by AutoContext library
      *
-     * @param context
+     * @param context appContext
      */
 
-    @NeedContext
+    @NeedContext(priority = 1)
     static public void init(Context context) {
-        if (context != null && context instanceof Application) {
-            appContext = context.getApplicationContext();
+        if (context != null) {
+            if (context instanceof Application) {
+                appContext = context;
+            } else {
+                appContext = context.getApplicationContext();
+            }
             ((Application) appContext).registerActivityLifecycleCallbacks(appSpy);
         }
     }

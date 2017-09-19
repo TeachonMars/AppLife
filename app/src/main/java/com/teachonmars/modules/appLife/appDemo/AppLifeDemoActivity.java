@@ -1,4 +1,4 @@
-package com.teachonmars.module.appLife.appDemo;
+package com.teachonmars.modules.appLife.appDemo;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

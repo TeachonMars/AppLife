@@ -1,4 +1,4 @@
-package com.teachonmars.module.appLife.listeners;
+package com.teachonmars.modules.appLife.listeners;
 
 import android.app.Activity;
 
