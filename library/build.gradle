@@ -25,4 +25,11 @@ dependencies {
     compile 'com.teachonmars.modules:autoContext:1.1.2'
     annotationProcessor 'com.teachonmars.modules:autoContext.compiler:1.1.2'
 }
-apply from: "${rootProject.projectDir}/scripts/${uploadTask}"
+
+ext {
+    pomArtifactId = 'appLife'
+    pomPackaging = 'aar'
+}
+
+apply from: "${rootProject.projectDir}/scripts/install.gradle"
+apply from: "${rootProject.projectDir}/scripts/bintray.gradle"
