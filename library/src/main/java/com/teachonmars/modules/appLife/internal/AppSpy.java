@@ -6,10 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.teachonmars.modules.appLife.listeners.ActivityActiveSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityBaseSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityCreationSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityVisibleSpy;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyBase;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -20,42 +17,34 @@ import java.util.ListIterator;
 public final class AppSpy implements Application.ActivityLifecycleCallbacks {
 
 
-    private LinkedHashMap<Integer, WeakReference<Activity>> activityStack              = new LinkedHashMap<>();
-    private WeakableArrayList<ActivityCreationSpy>          creationActivityListeners  = new WeakableArrayList<>();
-    private WeakableArrayList<ActivityVisibleSpy>           visibleActivityListeners   = new WeakableArrayList<>();
-    private WeakableArrayList<ActivityActiveSpy>            activeActivityListeners    = new WeakableArrayList<>();
-    private WeakableArrayList<ActivityBaseSpy>              wholeActivityLifeListeners = new WeakableArrayList<>();
+    private LinkedHashMap<Integer, WeakReference<Activity>> activityStack           = new LinkedHashMap<>();
+    private WeakableArrayList<ActivitySpyBase>              activitiesLifeListeners = new WeakableArrayList<>();
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         bindActivity(activity);
-        creationActivityListeners.iterCreation(activity);
-        wholeActivityLifeListeners.iterCreation(activity);
+        activitiesLifeListeners.iterCreation(activity);
     }
 
     @Override
     public void onActivityStarted(Activity activity) {
-        visibleActivityListeners.iterStart(activity);
-        wholeActivityLifeListeners.iterStart(activity);
+        activitiesLifeListeners.iterStart(activity);
 
     }
 
     @Override
     public void onActivityResumed(Activity activity) {
-        activeActivityListeners.iterResume(activity);
-        wholeActivityLifeListeners.iterResume(activity);
+        activitiesLifeListeners.iterResume(activity);
     }
 
     @Override
     public void onActivityPaused(Activity activity) {
-        activeActivityListeners.iterPause(activity);
-        wholeActivityLifeListeners.iterPause(activity);
+        activitiesLifeListeners.iterPause(activity);
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
-        visibleActivityListeners.iterStop(activity);
-        wholeActivityLifeListeners.iterStop(activity);
+        activitiesLifeListeners.iterStop(activity);
     }
 
     @Override
@@ -66,8 +55,7 @@ public final class AppSpy implements Application.ActivityLifecycleCallbacks {
     @Override
     public void onActivityDestroyed(Activity activity) {
         unbindActivity(activity);
-        creationActivityListeners.iterDestruction(activity);
-        wholeActivityLifeListeners.iterDestruction(activity);
+        activitiesLifeListeners.iterDestruction(activity);
     }
 
     @Nullable
@@ -107,41 +95,18 @@ public final class AppSpy implements Application.ActivityLifecycleCallbacks {
     }
 
     public boolean isStillAlive(int activityHash) {
-        return activityStack.get(activityHash).get() != null;
+        return ensureActivityStillExist(activityStack.get(activityHash).get())!=null;
     }
 
-    public void registerListener(ActivityBaseSpy listener, boolean hardRef) {
+    public void registerListener(ActivitySpyBase listener, boolean hardRef) {
         if (listener != null) {
-            if (listener instanceof ActivityCreationSpy) {
-                creationActivityListeners.add((ActivityCreationSpy) listener, hardRef);
-            } else if (listener instanceof ActivityVisibleSpy) {
-                visibleActivityListeners.add((ActivityVisibleSpy) listener, hardRef);
-            } else if (listener instanceof ActivityActiveSpy) {
-                activeActivityListeners.add((ActivityActiveSpy) listener, hardRef);
-            } else {
-                wholeActivityLifeListeners.add(listener, hardRef);
-            }
+            activitiesLifeListeners.add(listener, hardRef);
         }
     }
 
-    public void unregisterListener(ActivityBaseSpy listener) {
+    public void unregisterListener(ActivitySpyBase listener) {
         if (listener != null) {
-            if (listener instanceof ActivityCreationSpy) {
-                creationActivityListeners.remove(listener);
-            } else if (listener instanceof ActivityVisibleSpy) {
-                visibleActivityListeners.remove(listener);
-            } else if (listener instanceof ActivityActiveSpy) {
-                activeActivityListeners.remove(listener);
-            } else {
-                wholeActivityLifeListeners.remove(listener);
-            }
+            activitiesLifeListeners.remove(listener);
         }
     }
-
-//    public void registerListener(Application.ActivityLifecycleCallbacks listener) {
-//    }
-//
-//    public void unregisterListener(Application.ActivityLifecycleCallbacks listener) {
-//
-//    }
 }

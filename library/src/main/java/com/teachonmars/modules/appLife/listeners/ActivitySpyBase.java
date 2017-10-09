@@ -2,7 +2,7 @@ package com.teachonmars.modules.appLife.listeners;
 
 import android.app.Activity;
 
-public interface ActivityBaseSpy {
+public interface ActivitySpyBase {
     void onCreate(Activity activity);
 
     void onDestroy(Activity activity);

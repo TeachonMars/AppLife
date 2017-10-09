@@ -7,10 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.teachonmars.modules.appLife.internal.AppSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityActiveSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityBaseSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityCreationSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityVisibleSpy;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyVisible;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyBase;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyBuild;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyLive;
 import com.teachonmars.modules.autoContext.annotation.NeedContext;
 
 public class AppLife {
@@ -34,23 +34,23 @@ public class AppLife {
     }
 
     /**
-     * Register a listener {@link ActivityBaseSpy} to be called when activities evolves in their lifecycle
+     * Register a listener {@link ActivitySpyBase} to be called when activities evolves in their lifecycle
      *
-     * @param listener {@link ActivityBaseSpy} the listener to call. Some predefined abstract classes exist to regroup opposed lifecycle events :
-     *                 {@link ActivityCreationSpy}, {@link ActivityVisibleSpy}, {@link ActivityActiveSpy}
+     * @param listener {@link ActivitySpyBase} the listener to call. Some predefined abstract classes exist to regroup opposed lifecycle events :
+     *                 {@link ActivitySpyBuild}, {@link ActivitySpyLive}, {@link ActivitySpyVisible}
      * @param hardRef  choose if listener should be a store in a {@link java.lang.ref.WeakReference} or directly as a hard reference
      */
-    public static void register(ActivityBaseSpy listener, boolean hardRef) {
+    public static void register(ActivitySpyBase listener, boolean hardRef) {
         appSpy.registerListener(listener, hardRef);
     }
 
     /**
-     * Unregister a listener {@link ActivityBaseSpy} for stopping subsequent call to it.
+     * Unregister a listener {@link ActivitySpyBase} for stopping subsequent call to it.
      * Unregister is important for hard referenced listener added with {@linkplain  AppLife#register}
      *
      * @param listener
      */
-    public static void unregister(ActivityBaseSpy listener) {
+    public static void unregister(ActivitySpyBase listener) {
         appSpy.unregisterListener(listener);
     }
 

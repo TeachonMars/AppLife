@@ -2,7 +2,7 @@ package com.teachonmars.modules.appLife.listeners;
 
 import android.app.Activity;
 
-abstract public class ActivityCreationSpy implements ActivityBaseSpy {
+abstract public class ActivitySpyBuild implements ActivitySpyBase {
     @Override
     abstract public void onCreate(Activity activity);
 
