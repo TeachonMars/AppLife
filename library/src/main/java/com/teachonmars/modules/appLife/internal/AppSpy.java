@@ -16,7 +16,6 @@ import java.util.ListIterator;
 
 public final class AppSpy implements Application.ActivityLifecycleCallbacks {
 
-
     private LinkedHashMap<Integer, WeakReference<Activity>> activityStack           = new LinkedHashMap<>();
     private WeakableArrayList<ActivitySpyBase>              activitiesLifeListeners = new WeakableArrayList<>();
 
@@ -95,7 +94,7 @@ public final class AppSpy implements Application.ActivityLifecycleCallbacks {
     }
 
     public boolean isStillAlive(int activityHash) {
-        return ensureActivityStillExist(activityStack.get(activityHash).get())!=null;
+        return ensureActivityStillExist(activityStack.get(activityHash).get()) != null;
     }
 
     public void registerListener(ActivitySpyBase listener, boolean hardRef) {

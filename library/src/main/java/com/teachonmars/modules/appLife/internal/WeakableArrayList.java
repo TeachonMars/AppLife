@@ -7,6 +7,12 @@ import com.teachonmars.modules.appLife.listeners.ActivitySpyBase;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+
+/**
+ * Pseudo ArrayList can be used to store data items in ArrayList directly or by using WeakReference for each item
+ *
+ * @param <T>
+ */
 class WeakableArrayList<T extends ActivitySpyBase> {
     private ArrayList<WeakReference<T>> weakData = new ArrayList<>();
     private ArrayList<T>                data     = new ArrayList<>();
