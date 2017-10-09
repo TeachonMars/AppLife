@@ -3,7 +3,7 @@ package com.teachonmars.modules.appLife.listeners;
 import android.app.Activity;
 
 /**
- * Derived abstract class used to follow only activity's lifecycle is build (onCreate & onDestroy)
+ * Derived abstract class used to follow only activity's lifecycle is build (onCreate &amp; onDestroy)
  */
 abstract public class ActivitySpyBuild implements ActivitySpyBase {
     @Override
