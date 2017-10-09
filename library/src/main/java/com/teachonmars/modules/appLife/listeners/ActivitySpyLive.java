@@ -2,7 +2,10 @@ package com.teachonmars.modules.appLife.listeners;
 
 import android.app.Activity;
 
-abstract public class ActivityVisibleSpy implements ActivityBaseSpy {
+/**
+ * Derived abstract class used to follow only activity's lifecycle is live (onStart & onStop)
+ */
+abstract public class ActivitySpyLive implements ActivitySpyBase {
     @Override
     final public void onCreate(Activity activity) {
     }

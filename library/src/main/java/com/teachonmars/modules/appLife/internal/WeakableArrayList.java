@@ -2,12 +2,18 @@ package com.teachonmars.modules.appLife.internal;
 
 import android.app.Activity;
 
-import com.teachonmars.modules.appLife.listeners.ActivityBaseSpy;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyBase;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-class WeakableArrayList<T extends ActivityBaseSpy> {
+
+/**
+ * Pseudo ArrayList can be used to store data items in ArrayList directly or by using WeakReference for each item
+ *
+ * @param <T>
+ */
+class WeakableArrayList<T extends ActivitySpyBase> {
     private ArrayList<WeakReference<T>> weakData = new ArrayList<>();
     private ArrayList<T>                data     = new ArrayList<>();
 
@@ -21,7 +27,7 @@ class WeakableArrayList<T extends ActivityBaseSpy> {
         }
     }
 
-    void remove(ActivityBaseSpy listener) {
+    void remove(ActivitySpyBase listener) {
         if (listener != null) {
             if (data.get(listener.hashCode()) == listener) {
                 data.remove(listener.hashCode());

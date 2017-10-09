@@ -7,16 +7,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.teachonmars.modules.appLife.internal.AppSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityActiveSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityBaseSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityCreationSpy;
-import com.teachonmars.modules.appLife.listeners.ActivityVisibleSpy;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyBase;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyBuild;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyLive;
+import com.teachonmars.modules.appLife.listeners.ActivitySpyVisible;
 import com.teachonmars.modules.autoContext.annotation.NeedContext;
 
 public class AppLife {
     private static AppSpy appSpy = new AppSpy();
     private static Context appContext;
-
 
     /**
      * Init library.
@@ -24,56 +23,42 @@ public class AppLife {
      *
      * @param context appContext
      */
-
     @NeedContext(priority = 1)
     static public void init(Context context) {
         if (context != null) {
-            if (context instanceof Application) {
-                appContext = context;
-            } else {
-                appContext = context.getApplicationContext();
-            }
+            appContext = context.getApplicationContext();
             ((Application) appContext).registerActivityLifecycleCallbacks(appSpy);
         }
     }
 
     /**
-     * Register a listener {@link ActivityBaseSpy} to be called when activities evolves in their lifecycle
+     * Register a listener {@link ActivitySpyBase} to be called when activities evolves in their lifecycle
      *
-     * @param listener {@link ActivityBaseSpy} the listener to call. Some predefined abstract classes exist to regroup opposed lifecycle events :
-     *                 {@link ActivityCreationSpy}, {@link ActivityVisibleSpy}, {@link ActivityActiveSpy}
+     * @param listener {@link ActivitySpyBase} the listener to call. Some predefined abstract classes exist to regroup opposed lifecycle events :
+     *                 {@link ActivitySpyBuild}, {@link ActivitySpyLive}, {@link ActivitySpyVisible}
      * @param hardRef  choose if listener should be a store in a {@link java.lang.ref.WeakReference} or directly as a hard reference
      */
-    public static void register(ActivityBaseSpy listener, boolean hardRef) {
+    static public void register(ActivitySpyBase listener, boolean hardRef) {
         appSpy.registerListener(listener, hardRef);
     }
 
     /**
-     * Unregister a listener {@link ActivityBaseSpy} for stopping subsequent call to it.
+     * Unregister a listener {@link ActivitySpyBase} for stopping subsequent call to it.
      * Unregister is important for hard referenced listener added with {@linkplain  AppLife#register}
      *
      * @param listener
      */
-    public static void unregister(ActivityBaseSpy listener) {
+    static public void unregister(ActivitySpyBase listener) {
         appSpy.unregisterListener(listener);
     }
-
-//    public static void register(Application.ActivityLifecycleCallbacks listener) {
-//        appSpy.registerListener(listener);
-//    }
-//
-//    public static void unregister(Application.ActivityLifecycleCallbacks listener) {
-//        appSpy.unregisterListener(listener);
-//    }
 
     /**
      * Try to get current top activity, if one exist and still alive
      *
      * @return current top activity or null if none exist
      */
-    public static
     @Nullable
-    Activity getCurrentActivity() {
+    static public Activity getCurrentActivity() {
         return appSpy.tryGetCurrentActivity();
     }
 
@@ -82,9 +67,8 @@ public class AppLife {
      *
      * @return application context never null
      */
-    public static
     @NonNull
-    Context getAppContext() {
+    static public Context getAppContext() {
         return appContext;
     }
 
@@ -94,8 +78,7 @@ public class AppLife {
      * @param activityHash hash of activity to verify, retrieved by {@link Object#hashCode()}
      * @return true if Activty exist, false otherwise
      */
-
-    public static boolean isStillAlive(int activityHash) {
+    static public boolean isStillAlive(int activityHash) {
         return appSpy.isStillAlive(activityHash);
     }
 
@@ -105,8 +88,7 @@ public class AppLife {
      * @param activity activity to verify
      * @return true if Activty exist, false otherwise
      */
-
-    public static boolean isStillAlive(Activity activity) {
+    static public boolean isStillAlive(Activity activity) {
         return isStillAlive(activity.hashCode());
     }
 }
