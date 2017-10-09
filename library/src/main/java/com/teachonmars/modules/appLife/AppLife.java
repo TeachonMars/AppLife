@@ -28,11 +28,7 @@ public class AppLife {
     @NeedContext(priority = 1)
     static public void init(Context context) {
         if (context != null) {
-            if (context instanceof Application) {
-                appContext = context;
-            } else {
-                appContext = context.getApplicationContext();
-            }
+            appContext = context.getApplicationContext();
             ((Application) appContext).registerActivityLifecycleCallbacks(appSpy);
         }
     }

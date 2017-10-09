@@ -8,7 +8,7 @@ abstract public class ActivityActiveSpy implements ActivityBaseSpy {
     }
 
     @Override
-    public void onDestroy(Activity activity) {
+    final public void onDestroy(Activity activity) {
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.teachonmars.modules.appLife.listeners.ActivityActiveSpy;
 import com.teachonmars.modules.appLife.listeners.ActivityBaseSpy;
@@ -16,7 +17,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.ListIterator;
 
-public class AppSpy implements Application.ActivityLifecycleCallbacks {
+public final class AppSpy implements Application.ActivityLifecycleCallbacks {
 
 
     private LinkedHashMap<Integer, WeakReference<Activity>> activityStack              = new LinkedHashMap<>();
@@ -69,6 +70,7 @@ public class AppSpy implements Application.ActivityLifecycleCallbacks {
         wholeActivityLifeListeners.iterDestruction(activity);
     }
 
+    @Nullable
     public Activity tryGetCurrentActivity() {
         Collection<WeakReference<Activity>> values = activityStack.values();
         ListIterator<WeakReference<Activity>> weakReferenceListIterator = new ArrayList<>(values).listIterator(values.size());
