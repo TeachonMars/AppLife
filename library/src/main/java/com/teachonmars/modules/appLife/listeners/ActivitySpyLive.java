@@ -3,7 +3,7 @@ package com.teachonmars.modules.appLife.listeners;
 import android.app.Activity;
 
 /**
- * Derived abstract class used to follow only activity's lifecycle is live (onStart & onStop)
+ * Derived abstract class used to follow only activity's lifecycle is live (onStart &amp; onStop)
  */
 abstract public class ActivitySpyLive implements ActivitySpyBase {
     @Override

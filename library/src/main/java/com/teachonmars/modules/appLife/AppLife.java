@@ -46,7 +46,7 @@ public class AppLife {
      * Unregister a listener {@link ActivitySpyBase} for stopping subsequent call to it.
      * Unregister is important for hard referenced listener added with {@linkplain  AppLife#register}
      *
-     * @param listener
+     * @param listener activity spy to remove from AppLife
      */
     static public void unregister(ActivitySpyBase listener) {
         appSpy.unregisterListener(listener);
