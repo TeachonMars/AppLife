@@ -1,13 +1,16 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion androidCompileSdk
+    buildToolsVersion androidBuildTools
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion androidMinSdk
+        targetSdkVersion androidTargetSdk
+        versionCode 1
+        versionName libraryVersion
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -17,9 +20,9 @@ android {
 }
 dependencies {
     compile 'org.jetbrains:annotations-java5:15.0'
-    compile 'com.android.support:support-annotations:26.1.0'
+    compile "com.android.support:support-annotations:${depsAndroidSupport}"
 
-    compile 'com.teachonmars.modules:autoContext:1.1.3'
+    compile 'com.teachonmars.modules:autoContext:1.2.0'
     annotationProcessor 'com.teachonmars.modules:autoContext.compiler:1.1.3'
 }
 

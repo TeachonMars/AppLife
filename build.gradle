@@ -48,4 +48,11 @@ ext {
     licenseName = 'The MIT License'
     licenseUrl = 'https://opensource.org/licenses/MIT'
     allLicenses = ["MIT"]
+
+    androidCompileSdk = 26
+    androidBuildTools = "26.0.2"
+    androidMinSdk = 14
+    androidTargetSdk = 26
+    depsAndroidSupport = "26.1.0"
+    depsAutoContext = "1.2.0"
 }
