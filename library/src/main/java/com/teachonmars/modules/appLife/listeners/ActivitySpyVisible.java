@@ -11,15 +11,7 @@ abstract public class ActivitySpyVisible implements ActivitySpyBase {
     }
 
     @Override
-    final public void onDestroy(Activity activity) {
-    }
-
-    @Override
     final public void onStart(Activity activity) {
-    }
-
-    @Override
-    final public void onStop(Activity activity) {
     }
 
     @Override
@@ -27,4 +19,12 @@ abstract public class ActivitySpyVisible implements ActivitySpyBase {
 
     @Override
     abstract public void onPause(Activity activity);
+
+    @Override
+    final public void onStop(Activity activity) {
+    }
+
+    @Override
+    final public void onDestroy(Activity activity) {
+    }
 }
