@@ -17,7 +17,7 @@ import java.util.ListIterator;
 public final class AppSpy implements Application.ActivityLifecycleCallbacks {
 
     private LinkedHashMap<Integer, WeakReference<Activity>> activityStack           = new LinkedHashMap<>();
-    private WeakableArrayList<ActivitySpyBase>              activitiesLifeListeners = new WeakableArrayList<>();
+    private WeakableList<ActivitySpyBase>                   activitiesLifeListeners = new WeakableList<>();
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

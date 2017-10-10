@@ -11,14 +11,7 @@ abstract public class ActivitySpyLive implements ActivitySpyBase {
     }
 
     @Override
-    final public void onDestroy(Activity activity) {
-    }
-
-    @Override
     abstract public void onStart(Activity activity);
-
-    @Override
-    abstract public void onStop(Activity activity);
 
     @Override
     final public void onResume(Activity activity) {
@@ -27,4 +20,12 @@ abstract public class ActivitySpyLive implements ActivitySpyBase {
     @Override
     final public void onPause(Activity activity) {
     }
+
+    @Override
+    abstract public void onStop(Activity activity);
+
+    @Override
+    final public void onDestroy(Activity activity) {
+    }
+
 }

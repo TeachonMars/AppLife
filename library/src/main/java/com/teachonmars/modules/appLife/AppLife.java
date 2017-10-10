@@ -2,6 +2,7 @@ package com.teachonmars.modules.appLife;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Fragment;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,7 +37,12 @@ public class AppLife {
      *
      * @param listener {@link ActivitySpyBase} the listener to call. Some predefined abstract classes exist to regroup opposed lifecycle events :
      *                 {@link ActivitySpyBuild}, {@link ActivitySpyLive}, {@link ActivitySpyVisible}
-     * @param hardRef  choose if listener should be a store in a {@link java.lang.ref.WeakReference} or directly as a hard reference
+     * @param hardRef  choose if listener should be stored in a {@link java.lang.ref.WeakReference} or directly as a hard reference.
+     *                 For examples :
+     *                 - if you store somewhere the listener, you should use false to avoid memory leaks.
+     *                 - if the listener is an instance of {@link Context} or assimilated (like {@link Activity}, {@link Fragment}, ...)
+     *                 you should use false to avoid memory leaks.
+     *                 - otherwise, if listener is {@link Context}free and not stored by you, choose true
      */
     static public void register(ActivitySpyBase listener, boolean hardRef) {
         appSpy.registerListener(listener, hardRef);
