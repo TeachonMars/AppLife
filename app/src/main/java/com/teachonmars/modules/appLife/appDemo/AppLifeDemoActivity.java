@@ -10,6 +10,9 @@ public class AppLifeDemoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState == null) {
+            StaticWithoutContext.init();
+        }
         StaticWithoutContext.test();
     }
 
