@@ -38,7 +38,7 @@ ext {
     siteUrl = 'https://github.com/TeachonMars/AppLife'
     gitUrl = 'https://github.com/TeachonMars/AppLife.git'
 
-    libraryVersion = '1.1.0'
+    libraryVersion = '1.2.0'
 
     developerId = 'benjaminVadon'
     developerName = 'Benjamin Vadon'
